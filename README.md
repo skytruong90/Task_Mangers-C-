@@ -11,5 +11,8 @@ This code defines a Task struct to store information about a running process, in
 
 Note that the ps command used in this code may not be available on all systems, and may have different options and output formats on different platforms. You may need to adjust the command to work on your particular system. 
 
+## How to run the code:
+To run this code, you need a C++ compiler installed on your system.
+
 ## Sceenshot:
 <img src= "Capture.PNG" width="400">
