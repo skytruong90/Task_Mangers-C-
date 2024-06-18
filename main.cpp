@@ -2,8 +2,7 @@
 #include <vector>
 #include <chrono>
 #include <thread>
-#include <string>
-#include <algorithm>
+#include <cstdio> // For popen, pclose
 
 using namespace std;
 
@@ -15,19 +14,21 @@ struct Task {
 
 vector<Task> getTasks() {
     vector<Task> tasks;
-    FILE* fp;
-    char buf[512];
-    string cmd = "ps -eo pid,comm,%cpu | tail -n +2";
-    if ((fp = popen(cmd.c_str(), "r")) == nullptr) {
-        perror("popen failed");
+    const char* cmd = "ps -eo pid,comm,%cpu | tail -n +2";
+    FILE* fp = popen(cmd, "r");
+    if (!fp) {
+        cerr << "Failed to run command\n";
         exit(1);
     }
-    while (fgets(buf, sizeof(buf), fp)) {
+
+    char buffer[512];
+    while (fgets(buffer, sizeof(buffer), fp) != nullptr) {
         int pid;
         char name[256];
         double cpuUsage;
-        sscanf(buf, "%d %s %lf", &pid, name, &cpuUsage);
-        tasks.push_back({pid, name, cpuUsage});
+        if (sscanf(buffer, "%d %255s %lf", &pid, name, &cpuUsage) == 3) {
+            tasks.push_back({pid, string(name), cpuUsage});
+        }
     }
     pclose(fp);
     return tasks;
@@ -35,7 +36,7 @@ vector<Task> getTasks() {
 
 int main() {
     while (true) {
-        vector<Task> tasks = getTasks();
+        auto tasks = getTasks();
         cout << "Process\t\tCPU Usage (%)\n";
         for (const auto& task : tasks) {
             printf("%-15s\t%.2f\n", task.name.c_str(), task.cpuUsage);
