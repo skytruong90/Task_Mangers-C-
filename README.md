@@ -1,18 +1,24 @@
 # Title: Tasks Manger
-### This is a C++ program that can monitors tasks by periodically checking the status of running processes and their CPU usage.
 
-## How to install:
-1. Clone the repository: 
-2. The main code is inside a folder called group.py when you download everything.
-3. Run the project with a Pycharm IDE.
+This is a C++ program designed to monitor tasks by periodically checking the status of running processes and their CPU usage.
 
-## Summary: 
-This code defines a Task struct to store information about a running process, including its process ID, name, and CPU usage. The getTasks() function uses the ps command to obtain a list of running processes with their CPU usage, and returns a vector of Task objects. The main() function repeatedly calls getTasks() and prints out the list of tasks and their CPU usage every 5 seconds.
+## How to Install:
 
-Note that the ps command used in this code may not be available on all systems, and may have different options and output formats on different platforms. You may need to adjust the command to work on your particular system. 
+1. Clone the repository.
+2. The main code is located in a file called `group.cpp` in the downloaded folder.
+3. Open the project with an IDE that supports C++ development, such as CLion or Visual Studio.
 
-## How to run the code:
-To run this code, you need a C++ compiler installed on your system.
+## Summary:
+
+The program uses a struct named `Task` to store details about a running process, including its process ID, name, and CPU usage. The `getTasks()` function leverages the `ps` command to retrieve a list of running processes along with their CPU usage and stores them in a vector of `Task` objects. The `main()` function calls `getTasks()` and prints the list of tasks with their CPU usage every 5 seconds.
+
+**Note:** The `ps` command may not be available or may differ on some systems. You might need to modify the command depending on your operating system.
+
+## How to Run the Code:
+
+- Ensure a C++ compiler like `g++` is installed on your system.
+- Compile the program using a command similar to: `g++ group.cpp -o group`.
+- Run the compiled executable: `./group`.
 
 ## Sceenshot:
 <img src= "Capture.PNG" width="400">
