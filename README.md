@@ -1,4 +1,4 @@
-# Title: Tasks Manger
+# Tasks Manger
 
 This is a C++ program designed to monitor tasks by periodically checking the status of running processes and their CPU usage.
 
